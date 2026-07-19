@@ -1,0 +1,23 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "dev.neddslayer.savete.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "mixins": [
+        "LevelMixin",
+        "LivingEntityMixin",
+        "PlayerListMixin",
+        "ServerChunkCacheMixin",
+        "ServerLevelMixin",
+        "ServerPlayerMixin"
+    ],
+    "client": [
+        "PlayerModelMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    },
+    "overwrites": {
+        "requireAnnotations": true
+    }
+}

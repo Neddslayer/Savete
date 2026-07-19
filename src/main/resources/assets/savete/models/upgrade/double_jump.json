@@ -1,0 +1,11 @@
+{
+    "loader": "savete:upgrade_loader",
+    "textures": {
+        "layer0": "savete:upgrade/base",
+        "layer1": "savete:upgrade/double_jump"
+    },
+    "render_types": {
+        "minecraft:translucent": [0],
+        "minecraft:cutout": [1]
+    }
+}

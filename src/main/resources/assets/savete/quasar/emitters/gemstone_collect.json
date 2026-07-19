@@ -1,0 +1,69 @@
+{
+  "count": 1,
+  "emitter_settings": {
+    "shape": {
+      "shape": "veil:cube",
+      "dimensions": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "from_surface": false
+    },
+    "particle_settings": {
+      "random_initial_direction": true,
+      "initial_rotation": [
+        92.5,
+        91.025,
+        94.6
+      ],
+      "random_initial_rotation": true,
+      "particle_lifetime": 60,
+      "particle_speed": 0.1,
+      "base_particle_size": 0.15
+    }
+  },
+  "particle_data": {
+    "modules": [
+      {
+        "strength": -15.53,
+        "module": "veil:gravity"
+      },
+      {
+        "gradient": {
+          "rgb_points": [
+            {
+              "percent": 0.0,
+              "color": 16747263
+            },
+            {
+              "percent": 1.0,
+              "color": 0
+            }
+          ],
+          "alpha_points": [
+            {
+              "percent": 0.0,
+              "alpha": 1.0
+            }
+          ]
+        },
+        "interpolant": "return q.agePercent",
+        "module": "veil:color"
+      },
+      {
+        "fullbright": true,
+        "module": "veil:lightmap"
+      }
+    ],
+    "additive": true,
+    "render_style": "veil:cube"
+  },
+  "max_lifetime": 5,
+  "rate": 1
+}

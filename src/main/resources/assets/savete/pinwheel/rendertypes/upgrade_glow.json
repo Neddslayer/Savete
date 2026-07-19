@@ -1,0 +1,47 @@
+{
+    "format": "NEW_ENTITY",
+    "mode": "QUADS",
+    "bufferSize": "TRANSIENT",
+    "sort": true,
+    "affectsCrumbling": true,
+    "outline": true,
+    "layers": [
+        [
+            {
+                "type": "minecraft:texture",
+                "texture": "%1$s",
+                "blur": false,
+                "mipmap": false
+            },
+            {
+                "type": "minecraft:transparency",
+                "mode": "translucent"
+            },
+            {
+                "type": "veil:shader",
+                "name": "savete:upgrade_glow"
+            },
+            {
+                "type": "minecraft:cull"
+            }
+        ],
+        [
+            {
+                "type": "minecraft:texture",
+                "texture": "%1$s",
+                "blur": false,
+                "mipmap": false
+            },
+            {
+                "type": "veil:shader",
+                "name": "savete:upgrade_glow"
+            },
+            {
+                "type": "minecraft:output",
+                "framebuffer": "veil:bloom"
+            }
+        ]
+
+
+    ]
+}

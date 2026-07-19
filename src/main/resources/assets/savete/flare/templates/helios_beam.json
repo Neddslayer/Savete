@@ -1,0 +1,16 @@
+{
+    "layers": {
+        "name": "helios_beam",
+        "model": {
+            "path": "savete:beam_shell",
+            "positionOffset": [0, 0, 15],
+            "rotationOffset": [0, 0, 0],
+            "scaleOffset": [2, 2, 10],
+            "materials": {
+                "class": "base",
+                "renderType": "savete:grapple_point",
+                "properties": {}
+            }
+        }
+    }
+}

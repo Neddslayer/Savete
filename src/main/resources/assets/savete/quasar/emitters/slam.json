@@ -1,0 +1,71 @@
+{
+  "count": 5,
+  "emitter_settings": {
+    "shape": {
+      "shape": "veil:point",
+      "dimensions": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "from_surface": true
+    },
+    "particle_settings": {
+      "random_initial_direction": true,
+      "particle_lifetime": 10,
+      "initial_direction": [
+        0.51,
+        1.0,
+        0.49
+      ],
+      "particle_speed": 0.02,
+      "base_particle_size": 0.81
+    }
+  },
+  "particle_data": {
+    "modules": [
+      {
+        "size": "return q.age",
+        "module": "veil:size"
+      },
+      {
+        "gradient": {
+          "rgb_points": [
+            {
+              "percent": 0.0,
+              "color": 16777215
+            }
+          ],
+          "alpha_points": [
+            {
+              "percent": 0.0,
+              "alpha": 1.0
+            },
+            {
+              "percent": 1.0,
+              "alpha": 0.0
+            }
+          ]
+        },
+        "interpolant": "return q.agePercent",
+        "module": "veil:color"
+      }
+    ],
+    "sprite_data": {
+      "frame_width": 2,
+      "frame_height": 2,
+      "stretch_to_lifetime": true,
+      "sprite": "savete:textures/particle/burst.png",
+      "frame_count": 3
+    },
+    "render_style": "veil:billboard",
+    "face_velocity": true
+  },
+  "max_lifetime": 20,
+  "rate": 20
+}

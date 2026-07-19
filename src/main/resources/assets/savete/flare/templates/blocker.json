@@ -1,0 +1,18 @@
+{
+    "layers": {
+        "name": "blocker",
+        "model": {
+            "path": "savete:blocker",
+            "positionOffset": [0, -0.66666, 0],
+            "rotationOffset": [0, 0, 0],
+            "scaleOffset": [2.3333333, 1.333333, 1],
+            "materials": {
+                "class": "base",
+                "renderType": "savete:blocker",
+                "properties": {
+
+                }
+            }
+        }
+    }
+}

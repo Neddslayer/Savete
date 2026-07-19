@@ -1,0 +1,4 @@
+{
+    "vertex": "savete:flare/base",
+    "fragment": "savete:glow_quad_bloom"
+}

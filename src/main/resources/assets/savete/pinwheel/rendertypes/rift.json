@@ -1,0 +1,23 @@
+{
+    "format": "BLOCK",
+    "mode": "QUADS",
+    "bufferSize": "TRANSIENT",
+    "sort": false,
+    "affectsCrumbling": false,
+    "outline": false,
+    "layers": [
+        {
+            "type": "veil:shader",
+            "name": "savete:flare/rift"
+        },
+        {
+            "type": "minecraft:transparency",
+            "mode": "translucent"
+        },
+        {
+            "type": "minecraft:write_mask",
+            "color": true,
+            "depth": false
+        }
+    ]
+}

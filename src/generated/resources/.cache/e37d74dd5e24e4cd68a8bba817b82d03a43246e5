@@ -1,0 +1,9 @@
+// 1.21.1	2026-07-06T11:07:04.3658149	Block States: savete
+8e099a5ddfec0a4b3c1b3f1b847ff2f4ee06dc18 assets/savete/blockstates/gemstone.json
+7d3d0bc21c99efa69678bf7d7fc14ad77f8aa1f1 assets/savete/blockstates/launcher.json
+dfeac77a95930edaef28d67daa7ab948eb981d1d assets/savete/blockstates/void_torch.json
+e33f098f292b2c8464cca0de010b27f62a9291c2 assets/savete/models/block/gemstone.json
+94c7c10473a4c18ce38f9e2379d49c24a2a8f61b assets/savete/models/block/launcher.json
+7b1f356860d2df2a42373b7d273ac171c1035301 assets/savete/models/item/gemstone.json
+310fb748a8ed4f3dfe929fbff7c86fcf7dc086d3 assets/savete/models/item/launcher.json
+c7d0743aa0ea3ae7d3f8fcc41e396593bf6604a2 assets/savete/models/item/void_torch.json

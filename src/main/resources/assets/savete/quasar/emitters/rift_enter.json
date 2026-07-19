@@ -1,0 +1,104 @@
+{
+  "count": 2,
+  "emitter_settings": {
+    "shape": {
+      "shape": "veil:hemisphere",
+      "dimensions": [
+        1.56,
+        2.36,
+        6.19
+      ],
+      "rotation": [
+        0.0,
+        89.9,
+        0.0
+      ],
+      "from_surface": true
+    },
+    "particle_settings": {
+      "random_size": true,
+      "random_initial_direction": true,
+      "initial_rotation": [
+        72.175,
+        101.175,
+        96.4
+      ],
+      "random_initial_rotation": true,
+      "particle_lifetime": 40,
+      "particle_speed": 0.1,
+      "base_particle_size": 0.05,
+      "particle_size_variation": 0.06
+    }
+  },
+  "particle_data": {
+    "modules": [
+      {
+        "strength": 3.71,
+        "strengthByDistance": true,
+        "invertDistanceModifier": true,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "localPosition": true,
+        "range": 20.0,
+        "module": "veil:point_attractor"
+      },
+      {
+        "gradient": {
+          "rgb_points": [
+            {
+              "percent": 0.0,
+              "color": 16777215
+            }
+          ],
+          "alpha_points": [
+            {
+              "percent": 0.0,
+              "alpha": 0.0
+            },
+            {
+              "percent": 0.5,
+              "alpha": 1.0
+            },
+            {
+              "percent": 1.0,
+              "alpha": 0.0
+            }
+          ]
+        },
+        "interpolant": "return q.agePercent",
+        "module": "veil:color"
+      },
+      {
+        "fullbright": true,
+        "module": "veil:lightmap"
+      },
+      {
+        "local_position": true,
+        "range": 10.0,
+        "strength": 0.02,
+        "vortex_axis": [
+          1.0399999618530273,
+          0.009999999776482582,
+          0.0
+        ],
+        "vortex_center": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "module": "veil:vortex"
+      },
+      {
+        "strength": 0.87,
+        "module": "veil:drag"
+      }
+    ],
+    "render_style": "veil:cube"
+  },
+  "max_lifetime": 19,
+  "loop": true,
+  "rate": 1
+}

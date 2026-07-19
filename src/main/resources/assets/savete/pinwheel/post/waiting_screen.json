@@ -1,0 +1,9 @@
+{
+    "stages": [
+        {
+            "type": "veil:blit",
+            "shader": "savete:post/waiting_screen",
+            "in": "minecraft:main"
+        }
+    ]
+}

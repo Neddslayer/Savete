@@ -1,0 +1,10 @@
+{
+    "vertex": "savete:flare/base",
+    "fragment": "savete:flare/rift",
+    "textures": {
+        "MainDepthTexture": {
+            "type": "framebuffer",
+            "name": "savete:rift"
+        }
+    }
+}

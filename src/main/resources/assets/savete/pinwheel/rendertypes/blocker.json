@@ -1,0 +1,21 @@
+{
+    "format": "BLOCK",
+    "mode": "QUADS",
+    "bufferSize": "TRANSIENT",
+    "sort": false,
+    "affectsCrumbling": false,
+    "outline": false,
+    "layers": [
+
+        {
+            "type": "veil:shader",
+            "name": "savete:flare/blocker"
+        },
+        {
+            "type": "minecraft:write_mask",
+            "color": true,
+            "depth": true
+        }
+
+    ]
+}

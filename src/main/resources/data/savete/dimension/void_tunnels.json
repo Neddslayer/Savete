@@ -1,0 +1,10 @@
+{
+    "type": "savete:void_tunnels",
+    "generator": {
+        "type": "flat",
+        "settings": {
+            "layers": [],
+            "biome": "savete:void_tunnels"
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "format": "POSITION_COLOR_NORMAL",
+    "mode": "LINES",
+    "bufferSize": "TRANSIENT",
+    "sort": false,
+    "affectsCrumbling": false,
+    "outline": false,
+    "layers": [
+        {
+            "type": "minecraft:line"
+        },
+        {
+            "type": "minecraft:shader",
+            "name": "rendertype_lines"
+        },
+        {
+            "type": "minecraft:write_mask",
+            "color": true,
+            "depth": true
+        },
+        {
+            "type": "minecraft:cull",
+            "face": "none"
+        }
+    ]
+}

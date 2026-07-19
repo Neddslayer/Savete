@@ -1,0 +1,17 @@
+{
+    "layers": {
+        "name": "end",
+        "model": {
+            "path": "savete:end",
+            "positionOffset": [0, 0, 0],
+            "rotationOffset": [0, 0, 0],
+            "scaleOffset": [1, 1, 1],
+            "materials": {
+                "class": "base",
+                "renderType": "savete:end_portal",
+                "properties": {
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "format": "BLOCK",
+    "mode": "TRIANGLES",
+    "bufferSize": "TRANSIENT",
+    "sort": false,
+    "affectsCrumbling": false,
+    "outline": false,
+    "layers": [
+        {
+            "type": "veil:shader",
+            "name": "savete:finish_level"
+        },
+        {
+            "type": "minecraft:transparency",
+            "mode": "translucent"
+        },
+        {
+            "type": "minecraft:cull",
+            "face": "none"
+        }
+    ]
+}

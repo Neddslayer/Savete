@@ -1,0 +1,10 @@
+{
+    "vertex": "savete:finish_level",
+    "fragment": "savete:finish_level",
+    "textures": {
+        "MainDepthTexture": {
+            "type": "framebuffer",
+            "name": "savete:rift"
+        }
+    }
+}

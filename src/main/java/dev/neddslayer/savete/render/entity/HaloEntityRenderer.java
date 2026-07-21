@@ -1,27 +1,19 @@
 package dev.neddslayer.savete.render.entity;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import dev.neddslayer.savete.Savete;
 import dev.neddslayer.savete.entity.hostile.HaloEntity;
 import dev.neddslayer.savete.entity.hostile.SquelchEntity;
-import dev.neddslayer.savete.entity.hostile.TantrumEntity;
 import dev.neddslayer.savete.render.entity.model.SquelchModel;
 import foundry.veil.api.client.render.rendertype.VeilRenderType;
 import foundry.veil.api.client.util.Easing;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.phys.AABB;
-import org.joml.Vector3f;
 
 public class HaloEntityRenderer extends LateEntityRenderer<HaloEntity> {
 
@@ -42,7 +34,7 @@ public class HaloEntityRenderer extends LateEntityRenderer<HaloEntity> {
         float scale = Easing.EASE_OUT_CUBIC.ease(Math.clamp((p_entity.attackTimer - 40 + partialTick) / 10f, 0, 1));
         poseStack.scale(1.5f + scale * 2.5f, 1.5f + scale * 2.5f, 1.5f + scale * 2.5f);
 
-        float colorScale = Math.clamp((p_entity.attackTimer - 60 + partialTick) / 20f, 0, 1);
+        float colorScale = Math.clamp((p_entity.attackTimer - 40 + partialTick) / 30f, 0, 1);
 
         builder.addVertex(poseStack.last(), 0,0,0).setColor(1f, colorScale, colorScale, 1f).setNormal(0, 1, 0);
         for (int i = 0; i <= 64; i++) {
@@ -50,7 +42,7 @@ public class HaloEntityRenderer extends LateEntityRenderer<HaloEntity> {
             builder.addVertex(poseStack.last(), Mth.cos(percent * Mth.TWO_PI), 0.001f, Mth.sin(percent * Mth.TWO_PI)).setColor(1f, colorScale, colorScale, colorScale).setNormal(0, 1, 0);
         }
 
-        if (p_entity.attackTimer > 80) {
+        if (p_entity.attackTimer > 70) {
             VertexConsumer builder2 = bufferSource.getBuffer(RenderType.DEBUG_QUADS);
 
             for (int i = 1; i <= 64; i++) {

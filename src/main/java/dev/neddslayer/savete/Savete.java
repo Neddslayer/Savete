@@ -19,9 +19,12 @@ import foundry.veil.api.client.render.VeilRenderSystem;
 import foundry.veil.api.quasar.particle.ParticleEmitter;
 import net.minecraft.commands.Commands;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -181,11 +184,21 @@ public class Savete {
                     LocalPlayerManager.predictedEnemies = setPredictedEnemiesPacket.entities();
                 }
         );
+        registrar.playToServer(
+                ForceServerPlayerDeltaMovement.TYPE,
+                ForceServerPlayerDeltaMovement.STREAM_CODEC,
+                (forceServerPlayerDeltaMovement, iPayloadContext) -> {
+                    iPayloadContext.player().setDeltaMovement(forceServerPlayerDeltaMovement.delta().x, forceServerPlayerDeltaMovement.delta().y, forceServerPlayerDeltaMovement.delta().z);
+                }
+        );
     }
 
     private void onRegister(RegisterEvent event) {
         event.register(NeoForgeRegistries.Keys.ENTITY_DATA_SERIALIZERS, Savete.path("upgrade_type"), UpgradeHolderEntity.UPGRADE_LOCATION::serializer);
         event.register(NeoForgeRegistries.Keys.ENTITY_DATA_SERIALIZERS, Savete.path("jump_path"), SquelchEntity.JUMP_PATH::serializer);
+        if (event.getRegistryKey().equals(Registries.STRUCTURE_PROCESSOR)) {
+            GameController.SaveteTileProcessor.TYPE = Registry.<StructureProcessorType<?>>register((Registry<? super StructureProcessorType<?>>) event.getRegistry(), "tile_processor", (StructureProcessorType<GameController.SaveteTileProcessor>) (() -> GameController.SaveteTileProcessor.CODEC));
+        }
     }
 
     @SubscribeEvent

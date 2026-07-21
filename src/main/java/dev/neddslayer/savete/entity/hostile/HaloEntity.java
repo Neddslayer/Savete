@@ -12,8 +12,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import org.joml.Vector2d;
-import org.joml.Vector2f;
-import org.joml.Vector3f;
 
 import java.util.List;
 
@@ -37,7 +35,7 @@ public class HaloEntity extends AbstractChunkLoadingEntity {
                 if (target == null) return;
 
                 this.entityData.set(ENTITY_TARGET, target.getId(), true);
-                this.entityData.set(RANDOM_DELAY, this.random.nextIntBetweenInclusive(-10, 10));
+                this.entityData.set(RANDOM_DELAY, this.random.nextIntBetweenInclusive(-20, 40));
 
                 this.attackTimer = 0;
             }
@@ -48,7 +46,7 @@ public class HaloEntity extends AbstractChunkLoadingEntity {
                     this.setPos(target.getPosition(0));
                 }
             }
-            if (this.attackTimer >= 80) {
+            if (this.attackTimer >= 70) {
                 List<Entity> entities = this.level().getEntities(this, AABB.ofSize(this.getPosition(0).add(0, 2, 0), 8, 4, 8), EntitySelector.NO_CREATIVE_OR_SPECTATOR.and(EntitySelector.LIVING_ENTITY_STILL_ALIVE));
                 for (Entity entity : entities) {
                     if (new Vector2d(entity.getX(), entity.getZ()).distance(this.getPosition(0).x, this.getPosition(0).z) < 4) {

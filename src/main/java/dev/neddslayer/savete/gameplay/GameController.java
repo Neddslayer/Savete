@@ -1,5 +1,6 @@
 package dev.neddslayer.savete.gameplay;
 
+import com.mojang.serialization.MapCodec;
 import dev.neddslayer.savete.Savete;
 import dev.neddslayer.savete.entity.*;
 import dev.neddslayer.savete.gameplay.tile.TileData;
@@ -32,12 +33,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import net.minecraft.world.level.levelgen.structure.templatesystem.*;
 import net.minecraft.world.level.portal.DimensionTransition;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -93,11 +97,6 @@ public class GameController {
             DimensionTransition transition = player.findRespawnPositionAndUseSpawnBlock(true, DimensionTransition.DO_NOTHING);
             event.getEntity().changeDimension(transition);
         }
-    }
-
-    @SubscribeEvent
-    private static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
-        //event.
     }
 
     @SubscribeEvent
@@ -264,6 +263,7 @@ public class GameController {
             StructureTemplate template = level.getStructureManager().get(data.structureLocation()).orElseThrow();
 
             StructurePlaceSettings settings = new StructurePlaceSettings();
+            settings.addProcessor(new SaveteTileProcessor(this.getLevelPalette()));
             BlockPos placementPos = currentBlockPos.immutable().offset(data.tileOffset());
 
             template.placeInWorld(level, placementPos, placementPos, settings, createRandom(0L), 2);
@@ -614,5 +614,45 @@ public class GameController {
         if (level == null) return false;
 
         return isVoidTunnels(level.dimension());
+    }
+
+    private Block getLevelPalette() {
+        if (this.currentLevel > 20) {
+            return Blocks.BEDROCK;
+        } else if (this.currentLevel > 15) {
+            return Blocks.NETHER_WART_BLOCK;
+        } else if (this.currentLevel > 10) {
+            return Blocks.NETHERRACK;
+        } else if (this.currentLevel > 5) {
+            return Blocks.RED_TERRACOTTA;
+        } else {
+            return Blocks.STONE;
+        }
+    }
+
+    public static class SaveteTileProcessor extends StructureProcessor {
+        public static final MapCodec<SaveteTileProcessor> CODEC;
+        private final Block palette;
+        public static StructureProcessorType<?> TYPE;
+
+        private SaveteTileProcessor(Block palette) {
+            this.palette = palette;
+        }
+
+        @Override
+        public @Nullable StructureTemplate.StructureBlockInfo processBlock(LevelReader level, BlockPos offset, BlockPos pos, StructureTemplate.StructureBlockInfo blockInfo, StructureTemplate.StructureBlockInfo relativeBlockInfo, StructurePlaceSettings settings) {
+            if (relativeBlockInfo.state().is(Blocks.STONE)) {
+                return new StructureTemplate.StructureBlockInfo(relativeBlockInfo.pos(), this.palette.defaultBlockState(), relativeBlockInfo.nbt());
+            }
+            return super.processBlock(level, offset, pos, blockInfo, relativeBlockInfo, settings);
+        }
+
+        protected StructureProcessorType<?> getType() {
+            return TYPE;
+        }
+
+        static {
+            CODEC = BlockState.CODEC.xmap(BlockBehaviour.BlockStateBase::getBlock, Block::defaultBlockState).fieldOf("block").xmap(SaveteTileProcessor::new, (processor) -> processor.palette);
+        }
     }
 }

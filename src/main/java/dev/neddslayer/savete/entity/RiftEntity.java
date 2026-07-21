@@ -6,12 +6,10 @@ import dev.neddslayer.savete.registrar.EntityRegistrar;
 import foundry.veil.api.client.render.VeilRenderSystem;
 import foundry.veil.api.quasar.particle.ParticleEmitter;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
@@ -44,15 +42,10 @@ public class RiftEntity extends Entity {
             VeilRenderSystem.renderer().getParticleManager().addParticleSystem(emitter);
         }
         if (!this.level().isClientSide() && (!GameController.INSTANCE.isGameActive() || GameController.INSTANCE.currentLevel == 0)) {
-            this.level().getEntities(this, this.getBoundingBox().inflate(0.1), EntitySelector.NO_SPECTATORS.and(e -> e instanceof Player)).forEach(player ->
+            this.level().getEntities(this, this.getBoundingBox().inflate(1.0), EntitySelector.NO_SPECTATORS.and(e -> e instanceof Player)).forEach(player ->
                 player.changeDimension(new DimensionTransition(this.level().getServer().getLevel(GameController.VOID_TUNNELS_KEY), new Vec3(0, 66, 0), Vec3.ZERO, 0, 0, e -> {}))
             );
         }
-    }
-
-    @Override
-    public void playerTouch(Player player) {
-
     }
 
     @Override

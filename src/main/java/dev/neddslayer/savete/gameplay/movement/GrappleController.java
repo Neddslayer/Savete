@@ -1,10 +1,9 @@
 package dev.neddslayer.savete.gameplay.movement;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Axis;
 import dev.neddslayer.savete.Savete;
 import dev.neddslayer.savete.entity.GrapplePointEntity;
+import dev.neddslayer.savete.network.ForceServerPlayerDeltaMovement;
 import dev.neddslayer.savete.network.GrappleUpdatePacket;
 import foundry.veil.api.client.render.MatrixStack;
 import foundry.veil.api.client.render.VeilRenderBridge;
@@ -14,9 +13,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
-import net.minecraft.network.protocol.game.ServerboundMovePlayerPacket;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
@@ -187,8 +183,7 @@ public class GrappleController implements IPlayerController {
             }
 
             player.setDeltaMovement(motion.x, motion.y, motion.z);
-            player.hasImpulse = true;
-            player.connection.send(new ServerboundMovePlayerPacket.Pos(player.getX(), player.getY(), player.getZ(), true));
+            PacketDistributor.sendToServer(new ForceServerPlayerDeltaMovement(motion.toVector3f()));
 
             if (player.onGround()) {
                 cancelGrapple();
@@ -197,7 +192,6 @@ public class GrappleController implements IPlayerController {
             if (hookCooldown < 100) hookCooldown++;
             if (hookDebounce > 0) hookDebounce--;
         }
-        player.hasImpulse = true;
     }
 
     public void cancelGrapple() {

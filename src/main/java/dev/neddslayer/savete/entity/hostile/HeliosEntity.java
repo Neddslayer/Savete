@@ -1,37 +1,25 @@
 package dev.neddslayer.savete.entity.hostile;
 
 import dev.neddslayer.savete.entity.AbstractChunkLoadingEntity;
-import io.netty.buffer.ByteBuf;
-import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.RelativeMovement;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Quaternionf;
-import org.joml.Vector3d;
 import org.joml.Vector3f;
 
 import java.util.List;
-import java.util.Set;
 
 public class HeliosEntity extends AbstractChunkLoadingEntity {
     public static final EntityDataAccessor<Vector3f> TARGET_POSITION = SynchedEntityData.defineId(HeliosEntity.class, EntityDataSerializers.VECTOR3);
@@ -72,7 +60,7 @@ public class HeliosEntity extends AbstractChunkLoadingEntity {
 
                 this.entityData.set(TARGET_POSITION, selfPosition);
                 this.entityData.set(TARGET_BEAM_POSITION, targetPosition);
-                this.entityData.set(RANDOM_DELAY, this.random.nextIntBetweenInclusive(-10, 10));
+                this.entityData.set(RANDOM_DELAY, this.random.nextIntBetweenInclusive(-10, 40));
 
                 this.attackTimer = 0;
             }

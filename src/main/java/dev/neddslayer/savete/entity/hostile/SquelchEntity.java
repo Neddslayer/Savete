@@ -2,14 +2,11 @@ package dev.neddslayer.savete.entity.hostile;
 
 import dev.neddslayer.savete.Savete;
 import dev.neddslayer.savete.entity.AbstractChunkLoadingEntity;
-import dev.neddslayer.savete.gameplay.upgrade.UpgradeType;
 import dev.neddslayer.savete.network.SpawnQuasarParticlePacket;
 import dev.neddslayer.savete.registrar.EntityRegistrar;
 import foundry.veil.api.quasar.fx.Line;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializer;
@@ -17,9 +14,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -67,7 +62,7 @@ public class SquelchEntity extends AbstractChunkLoadingEntity {
                     jumpPath[jumpPath.length - 1] = teleportTarget.getBottomCenter();
                     List<Vector3f> path = Arrays.stream(jumpPath).filter(Objects::nonNull).map(Vec3::toVector3f).toList();
                     this.entityData.set(JUMP_PATH, path);
-                    this.entityData.set(RANDOM_DELAY, this.random.nextInt(-10, 10));
+                    this.entityData.set(RANDOM_DELAY, this.random.nextIntBetweenInclusive(-10, 10));
                     jumpingTime = 0;
                     landed = false;
                 }

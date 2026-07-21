@@ -1,9 +1,6 @@
 package dev.neddslayer.savete.entity.hostile;
 
 import dev.neddslayer.savete.entity.AbstractChunkLoadingEntity;
-import foundry.veil.api.client.util.Easing;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -38,7 +35,7 @@ public class TantrumEntity extends AbstractChunkLoadingEntity {
 
                 Vector3f direction = target.getPosition(1).subtract(this.getPosition(1)).normalize().toVector3f();
                 this.entityData.set(TARGET_DIRECTION, direction);
-                this.entityData.set(RANDOM_DELAY, this.random.nextIntBetweenInclusive(-10, 10));
+                this.entityData.set(RANDOM_DELAY, this.random.nextIntBetweenInclusive(-5, 20));
 
                 this.attackTimer = 0;
             }

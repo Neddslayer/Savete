@@ -33,7 +33,7 @@ public class TantrumEntity extends AbstractChunkLoadingEntity {
                 ServerPlayer target = (ServerPlayer) level.getNearestPlayer(this, Double.MAX_VALUE);
                 if (target == null) return;
 
-                Vector3f direction = target.getPosition(1).subtract(this.getPosition(1)).normalize().toVector3f();
+                Vector3f direction = target.getPosition(0).subtract(this.getPosition(0)).normalize().toVector3f();
                 this.entityData.set(TARGET_DIRECTION, direction);
                 this.entityData.set(RANDOM_DELAY, this.random.nextIntBetweenInclusive(-5, 20));
 
@@ -42,7 +42,7 @@ public class TantrumEntity extends AbstractChunkLoadingEntity {
         } else {
             if (this.attackTimer >= 10 && this.entityData.get(TARGET_DIRECTION).length() > 0) {
                 double factor = (1.0 - Math.clamp((this.attackTimer - 10) / 10f, 0, 1)) * 2;
-                Vec3 newPos = this.getPosition(1).add(new Vec3(this.entityData.get(TARGET_DIRECTION)).multiply(factor, factor, factor));
+                Vec3 newPos = this.getPosition(0).add(new Vec3(this.entityData.get(TARGET_DIRECTION)).multiply(factor, factor, factor));
                 this.setPos(newPos);
                 if (this.level() instanceof ServerLevel serverLevel) {
                     Player nearest = serverLevel.getNearestPlayer(this, 1.5);

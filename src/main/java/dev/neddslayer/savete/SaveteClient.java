@@ -24,7 +24,6 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.resources.model.BuiltInModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -39,7 +38,6 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
-import net.neoforged.neoforge.client.model.geometry.UnbakedGeometryHelper;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
 
 import java.util.*;
@@ -162,6 +160,7 @@ public class SaveteClient<T extends Entity> {
         event.registerEntityRenderer(EntityRegistrar.HELIOS.get(), HeliosEntityRenderer::new);
         event.registerEntityRenderer(EntityRegistrar.TANTRUM.get(), TantrumEntityRenderer::new);
         event.registerEntityRenderer(EntityRegistrar.HALO.get(), HaloEntityRenderer::new);
+        event.registerEntityRenderer(EntityRegistrar.ORBIT.get(), OrbitEntityRenderer::new);
 
         event.registerBlockEntityRenderer(BlockEntityRegistrar.FINISH_LEVEL.get(), FinishLevelBlockRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistrar.NEXT_LEVEL_INFO.get(), NextLevelInfoRenderer::new);

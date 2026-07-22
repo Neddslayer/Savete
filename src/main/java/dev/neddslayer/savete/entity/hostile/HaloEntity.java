@@ -22,6 +22,7 @@ public class HaloEntity extends AbstractChunkLoadingEntity {
 
     public HaloEntity(EntityType<?> entityType, Level level) {
         super(entityType, level);
+        this.noPhysics = true;
     }
 
     @Override

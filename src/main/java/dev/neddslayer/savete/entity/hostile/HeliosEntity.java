@@ -30,6 +30,7 @@ public class HeliosEntity extends AbstractChunkLoadingEntity {
     public HeliosEntity(EntityType<?> entityType, Level level) {
         super(entityType, level);
         this.chunkTicketDistance = 4;
+        this.noPhysics = true;
     }
 
     @Override
